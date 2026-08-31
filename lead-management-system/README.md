@@ -185,3 +185,16 @@ def append_row_to_table(ws, table, col_index, last_row, values):
 
     return new_row
 ```
+
+### Dynamic Next Reach-Out Date (Excel Formula)
+Once a lead's disposition (STATUS) is set, this formula automatically calculates when that lead should be contacted again, no agent ever manually enters a follow-up date.
+
+```excel
+=IF(OR([@STATUS]="Ghost call", [@STATUS]="Left voicemail", [@STATUS]="Left voicemail & sent sms", [@STATUS]="Left voicemail, sent sms, sent email", [@STATUS]="Mailbox is full", [@STATUS]="VM not setup", [@STATUS]="Customer disconnected"), WORKDAY([@[LAST REACH OUT]],15),
+    IF([@STATUS]="For follow-up", WORKDAY([@[LAST REACH OUT]],5),
+    IF([@STATUS]="Done",EDATE([@[LAST SERVICE APPT]],7),
+    IF([@STATUS]="", WORKDAY([@[LAST REACH OUT]],1),
+    IF(OR([@STATUS]="New Lead",[@STATUS]="Missed"), WORKDAY([@[LAST REACH OUT]],1), "")))))
+```
+
+###
