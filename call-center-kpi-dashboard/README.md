@@ -19,7 +19,7 @@ Given CDJR's structurally capped lead supply (~781/dealership/month) and the bri
 GM Dashboard revealed Westboro leads in Connect volume, yet Millbury converts at a higher rate with fewer connects  
 TL Dashboard traced this back to Westboro also carrying the highest Disconnect Rate (37% of leads worked), explaining why their high connect volume wasn't converting  
 
-## Teck Stack
+## Tech Stack
 Excel Power Query, Power BI, DAX
 
 ## Skills Demonstrated
