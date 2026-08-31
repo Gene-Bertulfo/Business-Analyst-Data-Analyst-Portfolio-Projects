@@ -197,4 +197,10 @@ Once a lead's disposition (STATUS) is set, this formula automatically calculates
     IF(OR([@STATUS]="New Lead",[@STATUS]="Missed"), WORKDAY([@[LAST REACH OUT]],1), "")))))
 ```
 
-###
+### Today() Filter
+This Power Query step filters ToReachOut.xlsx down to only leads whose NEXT REACH OUT date is today, so agents only ever see what's due right now.
+
+### EOD Disposition Update
+### VBA Macro
+### Appointment
+### Callback
