@@ -8,6 +8,9 @@ one that eliminates duplicate outreach, standardizes messy incoming data automat
 gives every agent a live, accurate list of who to call and when, without manual clean up.
 
 ## Description
+
+*This project is a replica of my actual work, except I used Power BI for my personal project — in my actual work, the dashboard was built in Excel.*  
+
 When I joined a brand-new call center operation, there was no lead management process in 
 place, this was the client's first time outsourcing outreach, so nothing existed to prevent 
 the same customer from being called multiple times. That gap became obvious fast: on our 
@@ -43,3 +46,5 @@ Root-cause debugging & controlled rollback
 Data governance & audit-trail design  
 
 ## Technical Details
+
+
