@@ -47,11 +47,32 @@ Data governance & audit-trail design
 
 ## In-depth details of the project
 
+### Safe column mapping
+Every incoming campaign list has different column names and different column counts. This function matches incoming column names (like "cust id" or "mobile number") to a standard internal set of field names but only when it's certain.
+
+```python
+def map_columns(incoming_columns):
+    alias_lookup = build_alias_lookup()
+    mapping = {}
+    unmapped = []
+    suggestions = {}
+
+    for col in incoming_columns:
+        norm = _normalize(col)
+        if norm in alias_lookup:
+            mapping[col] = alias_lookup[norm]
+            continue
+        unmapped.append(col)
+        close = get_close_matches(norm, alias_lookup.keys(), n=1, cutoff=0.6)
+        if close:
+            suggestions[col] = alias_lookup[close[0]]
+
+    return mapping, unmapped, suggestions
+```
+
 ### Composite-key matching (VIN + Customer ID)
-A VIN alone isn't a reliable match — vehicles change ownership. A Customer
-ID alone isn't reliable either — one customer can own multiple vehicles.
-So the system builds two lookup indexes and only counts a "Full Match"
-when a record appears in **both**: 
+A VIN alone isn't a reliable match, vehicles change ownership. A Customer ID alone isn't reliable either, one customer can own multiple vehicles.
+So the system builds two lookup indexes and only counts a "Full Match" when a record appears in **both**: 
 
 ```python
 
@@ -78,4 +99,46 @@ def process_leads_against_table(ws, table, incoming_df):
             common = [r for r in vin_matches if r in cust_matches]
             if common:
                 full_match = common[0]
+```
+
+### Full Match
+Once a lead is confirmed as a Full Match (same VIN + same Customer ID already in the Masterfile), the system only updates one thing, the last service appointment date and never touches the customer's disposition.
+
+```python
+
+if full_match is not None:
+            row_num = full_match["_row"]
+            master_date_ts = pd.to_datetime(full_match.get("LAST SERVICE APPT"), errors="coerce")
+            lead_date = lead["LAST SERVICE APPT"]
+
+            if pd.notna(lead_date) and (pd.isna(master_date_ts) or lead_date > master_date_ts):
+                ws.cell(row=row_num, column=col_index["LAST SERVICE APPT"]).value = lead_date.to_pydatetime()
+                action = "Updated LAST SERVICE APPT to newer date from campaign"
+            else:
+                action = "Kept existing Masterfile date (already most recent, or campaign had none)"
+
+            log.append({"VIN": vin, "CUSTOMER ID": cust_id, "MATCH TYPE": "Full Match", "ACTION": action})
+```
+
+### 
+
+### Openpyxl formatting-preservation
+Adds a new lead as a properly formatted row inside the client's existing Excel Table, instead of blowing away all their colors, filters, and banding the way a plain pandas export would.
+
+```python
+def append_row_to_table(ws, table, col_index, last_row, values):
+    new_row = last_row + 1
+    for header, col in col_index.items():
+        template_cell = ws.cell(row=last_row, column=col)
+        new_cell = ws.cell(row=new_row, column=col)
+        new_cell.value = _to_excel_value(values.get(header))
+        new_cell._style = copy_style(template_cell._style)
+
+    min_col, min_row, max_col, _ = range_boundaries(table.ref)
+    new_ref = f"{get_column_letter(min_col)}{min_row}:{get_column_letter(max_col)}{new_row}"
+    table.ref = new_ref
+    if table.autoFilter is not None:
+        table.autoFilter.ref = new_ref
+
+    return new_row
 ```
