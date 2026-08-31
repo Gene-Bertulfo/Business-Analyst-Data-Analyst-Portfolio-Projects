@@ -9,7 +9,7 @@ gives every agent a live, accurate list of who to call and when, without manual 
 
 ## Description
 
-*This project is a replica of my actual work, except I used Power BI for my personal project — in my actual work, the dashboard was built in Excel.*  
+*This project is a replica of my actual work, except I used Power BI for my personal project, in my actual work, the dashboard was built in Excel.*  
 
 When I joined a brand-new call center operation, there was no lead management process in 
 place, this was the client's first time outsourcing outreach, so nothing existed to prevent 
