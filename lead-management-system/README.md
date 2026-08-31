@@ -120,7 +120,50 @@ if full_match is not None:
             log.append({"VIN": vin, "CUSTOMER ID": cust_id, "MATCH TYPE": "Full Match", "ACTION": action})
 ```
 
-### 
+### VIN Conflict
+Handles the case where the VIN already exists in the Masterfile, but it's tied to a different Customer ID than the incoming lead, meaning either the vehicle changed ownership, or there's a data error somewhere.
+
+```python
+elif vin_matches:
+    existing_cust = vin_matches[0]["_CUSTID"]
+    log.append({
+        "VIN": vin, "CUSTOMER ID": cust_id,
+        "MATCH TYPE": "CONFLICT - VIN linked to a different Customer ID",
+        "ACTION": f"Not touched. Masterfile has this VIN under Customer ID {existing_cust}. Review manually.",
+    })
+```
+
+### Possible 2nd Vehicle
+Handles the case where the Customer ID already exists, but with a different VIN likely an existing customer who bought or leased another vehicle.
+
+```python
+elif cust_matches:
+    # NOT added to the Masterfile — reported only, per your call.
+    log.append({
+        "VIN": vin, "CUSTOMER ID": cust_id,
+        "MATCH TYPE": "New Vehicle for Existing Customer",
+        "ACTION": "NOT added to Masterfile. Reported only — review and add manually if valid.",
+    })
+```
+
+### New Lead
+The only case where a new row actually gets added, this only runs when neither the VIN nor the Customer ID matched anything already in the Masterfile.
+
+```python
+else:
+    values = {col: lead[col] for col in STANDARD_COLUMNS if col in col_index}
+    values["STATUS"] = "New Lead"
+    current_last_row = append_row_to_table(ws, table, col_index, current_last_row, values)
+
+    new_rec = dict(values)
+    new_rec["_row"] = current_last_row
+    new_rec["_VIN"] = vin
+    new_rec["_CUSTID"] = cust_id
+    vin_index.setdefault(vin, []).append(new_rec)
+    cust_index.setdefault(cust_id, []).append(new_rec)
+
+    log.append({"VIN": vin, "CUSTOMER ID": cust_id, "MATCH TYPE": "New Lead", "ACTION": "Added as new row"})
+```
 
 ### Openpyxl formatting-preservation
 Adds a new lead as a properly formatted row inside the client's existing Excel Table, instead of blowing away all their colors, filters, and banding the way a plain pandas export would.
