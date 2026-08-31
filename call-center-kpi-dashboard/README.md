@@ -33,6 +33,12 @@ Reporting integrity awareness
 
 ## In-depth details of the project
 
+### Live Dashboard
+Since I don't have a Power BI Pro/publish license, I've made the Excel version of this dashboard available as a view-only file.  
+You can explore it directly here:  
+
+[View the dashboard (Excel Online)]https://1drv.ms/x/c/AD1BE752F434B5DD/IQA30S4UmRT6R6Qy3oFIM5OjAUHbhuuNVavVpYXoutmDnXQ?e=CwAANP
+
 ### Data Sources & Extraction (Power Query)
 Every KPI in this dashboard traces back to two Excel workbooks: AllCallsHandled (call logs, appointments, callback responses) and Masterfile (hours worked, store info, employee info, disposition history). Power Query pulls and shapes all seven source sheets before anything reaches the data model.
 
