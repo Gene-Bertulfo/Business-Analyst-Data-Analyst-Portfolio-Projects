@@ -13,7 +13,22 @@ Every day, I sent EOD reports covering disposition totals and decline reasons, a
 
 To fix this, I built a full data pipeline: pulling seven source sheets across two Excel workbooks (call logs, appointments, callback responses, hours worked, store info, employee info, and disposition data) into Power Query, layering a Rolling Calendar for time-based analysis, and modeling relationships in Power Pivot. Since I didn't have access to softphone-level call data, I engineered an Outbound Weight proxy metric by combining Leads Worked and Callback counts. The final model feeds a Power BI dashboard with separate views for General Managers, Team Leads, and Agents, each structured around the KPIs that role actually needs to act on.
 
-## Teck Stack
-## Skills Demonstrated
 ## Results
+Idle Rate has held steady at ~47-48% for months — a structural pattern, not a one-off  
+Given CDJR's structurally capped lead supply (~781/dealership/month) and the brief, single-purpose nature of each call, current volume may not be sufficient to keep the full team continuously active, worth investigating as a demand or staffing question rather than an agent productivity issue  
+GM Dashboard revealed Westboro leads in Connect volume, yet Millbury converts at a higher rate with fewer connects  
+TL Dashboard traced this back to Westboro also carrying the highest Disconnect Rate (37% of leads worked), explaining why their high connect volume wasn't converting  
+
+## Teck Stack
+Excel Power Query, Power BI, DAX
+
+## Skills Demonstrated
+ETL & data modeling  
+Proxy-metric engineering  
+DAX measure development  
+Multi-tier dashboard design  
+Root-cause diagnostic analysis  
+Market-sizing/capacity reasoning  
+Reporting integrity awareness
+
 ## In-depth details of the project
