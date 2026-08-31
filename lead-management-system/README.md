@@ -26,9 +26,9 @@ for any available agent to pick up.
 
 ## Result
 ~2 hours saved on every list, scaling with volume
-5,000+ leads instantly integrated with self-assigning contact dates, no manual sorting
-100% of today's leads surfaced in one refresh
-Live: agent outreach synced to file automatically
+| 5,000+ leads instantly integrated with self-assigning contact dates, no manual sorting
+| 100% of today's leads surfaced in one refresh
+| Live: agent outreach synced to file automatically
 
 ## Teck Stack
 Python, Excel Power Query, Excel VBA Macro, OneDrive live sync, Miro
