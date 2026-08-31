@@ -33,7 +33,7 @@ for any available agent to pick up.
 100% of today's leads surfaced in one refresh  
 Live: agent outreach synced to file automatically  
 
-## Teck Stack
+## Tech Stack
 Python, Excel Power Query, Excel VBA Macro, OneDrive live sync, Miro
 
 ## Skills Demonstrated
