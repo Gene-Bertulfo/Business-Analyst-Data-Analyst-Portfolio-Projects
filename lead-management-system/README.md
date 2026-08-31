@@ -200,7 +200,53 @@ Once a lead's disposition (STATUS) is set, this formula automatically calculates
 ### Today() Filter
 This Power Query step filters ToReachOut.xlsx down to only leads whose NEXT REACH OUT date is today, so agents only ever see what's due right now.
 
-### EOD Disposition Update
-### VBA Macro
-### Appointment
-### Callback
+![Power Query Today filter](./screenshots/PowerQueryTodayFilter.png)
+
+### End-of-Day Disposition Sync
+After agents finish their calls for the day, this runs against the compiled call log and writes each customer's outcome back into the Masterfile updating both the last contact date and the disposition.
+
+```python
+ if pd.notna(reach_out) and str(reach_out).strip() != "":
+            reach_out_ts = pd.to_datetime(reach_out, errors="coerce")
+            if pd.notna(reach_out_ts):
+                ws.cell(row=rec["_row"], column=col_index["LAST REACH OUT"]).value = reach_out_ts.to_pydatetime()
+                actions.append(f"LAST REACH OUT set to {reach_out_ts:%m/%d/%Y}")
+            else:
+                actions.append("REACH OUT value present but could not be parsed as a date - skipped")
+
+        if pd.isna(disposition) or str(disposition).strip() == "":
+            actions.append("STATUS left unchanged (blank DISPOSITION)")
+        else:
+            ws.cell(row=rec["_row"], column=col_index["STATUS"]).value = disposition
+            actions.append(f"STATUS updated to '{disposition}'")
+
+        log.append({"CUSTOMER ID": cust_id, "DISPOSITION": disposition, "ACTION": "; ".join(actions)})
+```
+
+### Daily Log Archival (VBA Macro)
+Moves each day's completed call logs out of DailyReachOut and into the permanent AllCallLogs archive, this is the step that happens after agents finish their calls for the day.
+
+```
+Sub ArchiveDailyCalls()
+    ' ... (sheet/table setup omitted for brevity)
+
+    Set sourceDataRange = tblSource.DataBodyRange
+    If sourceDataRange Is Nothing Then
+        MsgBox "The 'CompiledLogsFromStores' table has no data to archive.", vbExclamation, "Notice"
+        GoTo CleanUp
+    End If
+
+    If wsDest.ListObjects.Count > 0 Then
+        Set tblDest = wsDest.ListObjects(1)
+        If tblDest.DataBodyRange Is Nothing Then
+            Set destTargetRange = tblDest.HeaderRowRange.Offset(1, 0)
+        Else
+            Set destTargetRange = tblDest.DataBodyRange.Rows(tblDest.DataBodyRange.Rows.Count).Offset(1, 0)
+        End If
+    End If
+
+    sourceDataRange.Copy
+    destTargetRange.PasteSpecial Paste:=xlPasteValues
+    Application.CutCopyMode = False
+End Sub
+```
