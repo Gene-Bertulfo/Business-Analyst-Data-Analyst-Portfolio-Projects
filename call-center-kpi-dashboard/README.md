@@ -36,6 +36,8 @@ Reporting integrity awareness
 ### Data Sources & Extraction (Power Query)
 Every KPI in this dashboard traces back to two Excel workbooks: AllCallsHandled (call logs, appointments, callback responses) and Masterfile (hours worked, store info, employee info, disposition history). Power Query pulls and shapes all seven source sheets before anything reaches the data model.
 
+![All Data Sources](./screenshots/AllDataSources.png)
+
 ### Rolling Calendar
 A dynamic date table built in Power Query, giving the model a proper time dimension to drive monthly trends, MoM comparisons, and the Year/Month button slicers, instead of relying on whatever raw dates happened to exist in the source data.
 
@@ -52,17 +54,28 @@ Source = #date(2025,1,1),
 ### Relational Database (Power Pivot Data Model)
 The data model connects StoreInfo, EmployeeInfo, AllCallsHandled, HrsWorked, and the Rolling Calendar into a single relational structure, so a single slicer selection (branch, agent, or date) filters consistently across every table and every visual.
 
+![Relational Database](./screenshots/RelationalDatabase.png)
+
 ### DAX Measures
 Core measures include leads worked, outbound volume, phone time, and efficiency ratios like Leads/hr and Calls/hr (built with DIVIDE() to safely handle zero-denominator cases).
+
+![DAX Measures](./screenshots/DAXMeasures.png)
 
 ### General Manager Dashboard
 Funnel-ordered volume tracking: Outreach → Leads Worked → Connect → Appointment → Show Up are sequenced left to right to mirror the actual customer journey, so drop-off is visible at a glance.  
 Capacity analysis: Phone Time vs. Worked Hours, surfacing Idle Rate as a direct efficiency signal.  
 Branch comparison: Monthly trendlines (Conversion, Show-Up Rate) alongside side-by-side volume and efficiency charts (Connect vs. Appointment; Conversion vs. Yield) across Millbury, Newton, and Westboro.
 
+![GM Dashboard](./screenshots/GMDashboard.png)
+
 ### Team Lead Dashboard
 Quick performance overview + dialing hygiene check: Team-wide appointment, show-up, and callback metrics alongside call disposition rates, each with MoM deltas.  
 Funnel volume vs. dialing quality (per agent): Two paired charts separating effort (how much each agent is dialing) from outcome quality (what happens once they connect), letting a Team Lead diagnose whether a low performer needs more activity or better call technique.
 
+![TL Dashboard](./screenshots/TLDashboard.png)
+
 ### Agent Dashboard
 Conversion trend vs. team average: The selected agent's monthly trend plotted against a dynamic team-average benchmark line, built using DAX ALL() on the agent dimension to keep the benchmark stable regardless of which agent is selected.
+
+![Agent Dashboard](./screenshots/AgentDashboard.png)
+
