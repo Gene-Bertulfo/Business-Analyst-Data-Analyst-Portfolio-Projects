@@ -54,6 +54,7 @@ So the system builds two lookup indexes and only counts a "Full Match"
 when a record appears in **both**: 
 
 '''python
+
 def process_leads_against_table(ws, table, incoming_df):
     records, col_index, header_row, last_row = read_table_records(ws, table)
     for rec in records:
