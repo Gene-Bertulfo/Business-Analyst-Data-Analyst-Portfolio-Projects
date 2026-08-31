@@ -25,21 +25,21 @@ or callbacks are routed into their own tracking views, including reopening misse
 for any available agent to pick up.
 
 ## Result
-~2 hours saved on every list, scaling with volume
-| 5,000+ leads instantly integrated with self-assigning contact dates, no manual sorting
-| 100% of today's leads surfaced in one refresh
-| Live: agent outreach synced to file automatically
+~2 hours saved on every list, scaling with volume  
+5,000+ leads instantly integrated with self-assigning contact dates, no manual sorting  
+100% of today's leads surfaced in one refresh  
+Live: agent outreach synced to file automatically  
 
 ## Teck Stack
 Python, Excel Power Query, Excel VBA Macro, OneDrive live sync, Miro
 
 ## Skills Demonstrated
-Process Mapping
-Iterative debugging against real data
-Requirements gathering & scooping under real ambiguity
-Deterministic matching logic with composite keys
-Translating business rules into working code
-Root-cause debugging & controlled rollback
-Data governance & audit-trail design
+Process Mapping  
+Iterative debugging against real data  
+Requirements gathering & scooping under real ambiguity  
+Deterministic matching logic with composite keys  
+Translating business rules into working code  
+Root-cause debugging & controlled rollback  
+Data governance & audit-trail design  
 
 ## Technical Details
