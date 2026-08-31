@@ -33,3 +33,21 @@ Reporting integrity awareness
 
 ## In-depth details of the project
 
+### All data sources
+### Rolling Calendar
+
+```
+Source = #date(2025,1,1),
+    Custom1 = List.Dates(Source,Number.From(DateTime.LocalNow())-Number.From(Source),#duration(1,0,0,0)),
+    #"Converted to Table" = Table.FromList(Custom1, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+    #"Renamed Columns" = Table.RenameColumns(#"Converted to Table",{{"Column1", "Date"}}),
+    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"Date", type date}}),
+    #"Inserted Week of Year" = Table.AddColumn(#"Changed Type", "Week of Year", each Date.WeekOfYear([Date]), Int64.Type),
+    #"Inserted Month" = Table.AddColumn(#"Inserted Week of Year", "Month", each Date.Month([Date]), Int64.Type),
+    #"Renamed Columns1" = Table.RenameColumns(#"Inserted Month",{{"Month", "MonthNum"}}),
+```
+
+### DAX Measures
+### General Manager Dashboard
+### Team Lead Dashboard
+### Agent Dashboard
