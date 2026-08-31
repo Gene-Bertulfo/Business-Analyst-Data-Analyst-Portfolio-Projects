@@ -53,7 +53,7 @@ ID alone isn't reliable either — one customer can own multiple vehicles.
 So the system builds two lookup indexes and only counts a "Full Match"
 when a record appears in **both**: 
 
-'''python
+```python
 
 def process_leads_against_table(ws, table, incoming_df):
     records, col_index, header_row, last_row = read_table_records(ws, table)
@@ -78,4 +78,4 @@ def process_leads_against_table(ws, table, incoming_df):
             common = [r for r in vin_matches if r in cust_matches]
             if common:
                 full_match = common[0]
-'''
+```
