@@ -16,7 +16,7 @@ To fix this, I built a full data pipeline: pulling seven source sheets across tw
 ## Results
 Idle Rate has held steady at ~47-48% for months, a structural pattern, not a one-off  
 Given CDJR's structurally capped lead supply (~781/dealership/month) and the brief, single-purpose nature of each call, current volume may not be sufficient to keep the full team continuously active, worth investigating as a demand or staffing question rather than an agent productivity issue.  
-GM Dashboard revealed Westboro leads in Connect volume, yet Millbury converts at a higher rate with fewer connects. TL Dashboard traced this back to Westboro also carrying the highest Disconnect Rate (37% of leads worked), explaining why their high connect volume wasn't converting  
+GM Dashboard revealed Westboro leads in Connect volume, yet Millbury converts at a higher rate with fewer connects. TL Dashboard traced this back to Westboro also carrying the highest Disconnect Rate (37% of leads worked), explaining why their high connect volume wasn't converting. It is worth investigating data hygiene issues like inactive accounts, and focusing on optimizing higher answer-rate hours.
 
 ## Tech Stack
 Excel Power Query, Power BI, DAX
