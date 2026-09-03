@@ -27,7 +27,9 @@ All data covers 2019-2025. Quarterly AN unit sales were derived directly from Q1
 
 **2021-2022: Supply-constrained substitution.** This period initially looked like a sentiment-driven shift toward used vehicles (sentiment was falling; used units were rising). Three independent pieces of evidence instead point to a supply-side explanation:  
 - Total industry sales (not just AN) dropped sharply, an industry-wide event consistent with the chip shortage, not a demand-side story specific to AN's customers.
+  ![Total Industry Sales](./screenshots/Units-Sold-Total-Industry-Sales.png)
 - AN's own new-vehicle days-supply fell to roughly 10–15 days, a direct measurement of inventory scarcity.
+  ![Days Supply](./screenshots/DaysSupply.png)
 - New-vehicle CPI rose while new units fell (the signature of a supply-constrained price spike); used-vehicle CPI rose and used units rose simultaneously (the signature of a demand-pull surge as displaced new-car buyers competed for used inventory).
 
 AN's own units held up better than the industry average during this window, suggesting the used-vehicle pivot helped offset the new-vehicle shortage better than competitors managed.  
