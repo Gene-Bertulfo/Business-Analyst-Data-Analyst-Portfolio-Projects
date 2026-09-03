@@ -30,7 +30,7 @@ Root-cause diagnostic analysis
 Market-sizing/capacity reasoning  
 Reporting integrity awareness
 
-## In-depth details of the project
+## Tech Showcase
 
 ### Live Dashboard
 Since I don't have a Power BI Pro/publish license, I've made the Excel version of this dashboard available as a view-only file.  
