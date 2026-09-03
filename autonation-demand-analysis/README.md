@@ -19,6 +19,7 @@ AutoNation (AN) is used as a bellwether for consumer durables spending. This ana
 | CPI: used vehicles (CUSR0000SETA02) | FRED | Quarterly (avg) |
 | Total industry vehicle sales, SAAR (TOTALSA) | FRED | Quarterly (avg) |
 
+All data covers 2019–2025. Quarterly AN unit sales were derived directly from Q1–Q3 10-Q disclosures; Q4 figures were derived as (annual 10-K total − sum of Q1–Q3).
 
 
 ## Results
