@@ -19,7 +19,7 @@ AutoNation (AN) is used as a bellwether for consumer durables spending. This ana
 | CPI: used vehicles (CUSR0000SETA02) | FRED | Quarterly (avg) |
 | Total industry vehicle sales, SAAR (TOTALSA) | FRED | Quarterly (avg) |
 
-All data covers 2019–2025. Quarterly AN unit sales were derived directly from Q1–Q3 10-Q disclosures; Q4 figures were derived as (annual 10-K total − sum of Q1-Q3).
+All data covers 2019-2025. Quarterly AN unit sales were derived directly from Q1–Q3 10-Q disclosures; Q4 figures were derived as (annual 10-K total − sum of Q1-Q3).
 
 ### Timeline of Findings
 
@@ -152,3 +152,45 @@ fred_df["reportDate"] = pd.to_datetime(fred_df["reportDate"]).dt.date
 fred_df
 ```
 
+### Lag/cross-correlation Calculation
+
+```python
+results = []
+for indicator in indicators:
+    for target in targets:
+        for lag in range(0, 5):
+            shifted = df[indicator].shift(lag)
+            valid = df[[target]].join(shifted.rename("shifted")).dropna()
+            if len(valid) > 5:
+                corr = valid[target].corr(valid["shifted"])
+                results.append({
+                    "indicator": indicator,
+                    "target": target,
+                    "lag_quarters": lag,
+                    "correlation": round(corr, 3),
+                    "n": len(valid)
+                })
+
+lag_results = pd.DataFrame(results)
+
+best_lags = lag_results.loc[lag_results.groupby(["indicator", "target"])["correlation"].apply(lambda x: x.abs().idxmax())]
+best_lags = best_lags.sort_values("correlation", key=abs, ascending=False).reset_index(drop=True)
+best_lags
+```
+
+### Caveat: each phase has ~half the data, so treat this as even more directional than the full-period result
+
+```python
+for phase_name, phase_df in df.groupby("phase"):
+    print(f"\n=== {phase_name} (n={len(phase_df)}) ===")
+    phase_results = []
+    for indicator in indicators:
+        for target in targets:
+            for lag in range(0, 3):  # fewer lags given smaller n per phase
+                shifted = phase_df[indicator].shift(lag)
+                valid = phase_df[[target]].join(shifted.rename("shifted")).dropna()
+                if len(valid) > 4:
+                    corr = valid[target].corr(valid["shifted"])
+                    phase_results.append({"indicator": indicator, "target": target, "lag": lag, "corr": round(corr, 3), "n": len(valid)})
+    print(pd.DataFrame(phase_results).sort_values("corr", key=abs, ascending=False).head(10))
+```
