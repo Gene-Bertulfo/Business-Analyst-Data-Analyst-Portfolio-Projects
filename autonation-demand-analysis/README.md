@@ -23,6 +23,15 @@ All data covers 2019–2025. Quarterly AN unit sales were derived directly from 
 
 ### Timeline of Findings
 
+**2020 (Q1–Q2): Pandemic shock.** Every indicator moves simultaneously: sentiment craters, unemployment spikes, disposable income and savings rate both spike (driven by stimulus payments, not spending behavior), industry-wide sales crash. AN's own units dip modestly and recover quickly. This period is treated as an anomaly throughout the analysis, since it can distort correlation results if not isolated.
+
+**2021–2022: Supply-constrained substitution.** This period initially looked like a sentiment-driven shift toward used vehicles (sentiment was falling; used units were rising). Three independent pieces of evidence instead point to a supply-side explanation:  
+- Total industry sales (not just AN) dropped sharply, an industry-wide event consistent with the chip shortage, not a demand-side story specific to AN's customers.
+- AN's own new-vehicle days-supply fell to roughly 10–15 days, a direct measurement of inventory scarcity.
+- New-vehicle CPI rose while new units fell (the signature of a supply-constrained price spike); used-vehicle CPI rose and used units rose simultaneously (the signature of a demand-pull surge as displaced new-car buyers competed for used inventory).
+
+AN's own units held up better than the industry average during this window, suggesting the used-vehicle pivot helped offset the new-vehicle shortage better than competitors managed.  
+Separately, unemployment fell to historic lows during this same window while sentiment kept declining, a divergence attributable to inflation eroding confidence even as the labor market stayed strong.
 
 ## Results
 
