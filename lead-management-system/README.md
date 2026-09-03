@@ -45,7 +45,7 @@ Translating business rules into working code
 Root-cause debugging & controlled rollback  
 Data governance & audit-trail design  
 
-## In-depth details of the project
+## Tech Showcase
 
 ### Safe column mapping
 Every incoming campaign list has different column names and different column counts. This function matches incoming column names (like "cust id" or "mobile number") to a standard internal set of field names but only when it's certain.
