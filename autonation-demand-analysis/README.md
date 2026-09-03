@@ -67,6 +67,8 @@ Web Scraping SEC EDGAR filings using their submission API, with BeautifulSoup HT
 REST API integration with FRED to pull multiple macro time series  
 Derived-metric construction  
 Loading and managing structured data in BigQuery  
+Data pipeline debugging  
+API rate-limit/pagination handling  
 Cross-correlation / lag analysis  
 Out-of-sample validation  
 Phase-based/segmented analysis  
@@ -77,6 +79,7 @@ Converting a statistical relationship into a specific, timed operational recomme
 ## Tech Showcase
 
 ### Pull the full filing list (10-Q and 10-K)
+Hits SEC EDGAR's submissions API directly and filters down to just the filing types and date range this project needs.
 
 ```python
 def get_filings(CIK_PADDED, HEADERS):
@@ -99,6 +102,7 @@ filings.head()
 ```
 
 ### Parse "Retail vehicle unit sales" out of each filing
+Since SEC filings have no consistent table structure across years, this scans every table on the page looking for the specific label, rather than assuming a fixed row/column position.
 
 ```python
 def extract_units(url, headers):
@@ -117,6 +121,7 @@ def extract_units(url, headers):
 ```
 
 ### Forward to BigQuery
+Loads the scraped data into BigQuery with WRITE_TRUNCATE, so re-running the scraper always reflects the latest pull instead of duplicating rows.
 
 ```python
 table_id = f"{PROJECT_ID}.{DATASET_ID}.units_sold_raw"
@@ -129,6 +134,7 @@ print("Loaded", job.output_rows, "rows to", table_id)
 ```
 
 ### Extract Data from FRED with API Key
+Pulls multiple macro time series from FRED in one loop, tagging each with its series label so they can be stacked into a single long-format table.
 
 ```python
 def get_fred_series(series_id, api_key):
@@ -163,6 +169,7 @@ fred_df
 ```
 
 ### Lag/cross-correlation Calculation
+Tests every indicator against every target across 0-4 quarter lags, then keeps only the strongest (by absolute value) lag per indicator-target pair.
 
 ```python
 results = []
@@ -188,7 +195,8 @@ best_lags = best_lags.sort_values("correlation", key=abs, ascending=False).reset
 best_lags
 ```
 
-### Caveat: each phase has ~half the data, so treat this as even more directional than the full-period result
+### Phase-based lag calculation (pandemic vs. post-pandemic)
+Re-runs the same lag logic separately on each time period, since a relationship that holds across the full dataset can be an artifact of one anomalous period rather than a real pattern.
 
 ```python
 for phase_name, phase_df in df.groupby("phase"):
@@ -206,6 +214,7 @@ for phase_name, phase_df in df.groupby("phase"):
 ```
 
 ### CTEs
+Joins all seven macro/company series into one row-per-quarter table for analysis, using a separate CTE per source series for readability.
 
 ```BigQuery
 WITH umcsent AS (
