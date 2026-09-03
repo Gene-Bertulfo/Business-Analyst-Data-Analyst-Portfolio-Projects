@@ -60,9 +60,19 @@ Instead, new-vehicle inventory days-supply is a more defensible, real-time signa
 One important qualifier baked into the recommendation: **don't apply this automatically to the current 2024-2025 environment.** Days-supply is rising right now too, but for a different reason than 2021-2022, back then it was scarcity (chip shortage) forcing the shift to used; right now it looks more like inventory piling up because demand is genuinely softening (consumer sentiment declining while unemployment gradually climbs, a combination not seen since the pandemic). The trigger metric is the same, but the recommended response isn't automatically "lean into used" this time, that call should be re-evaluated against whether this is a supply story or a demand story, since the data suggests it's likely the latter now.
 
 ## Tech Stack
-Python, BigQuery, Power BI
+Python, BigQuery, Power BI, FRED API
 
 ## Skills Demonstrated
+Web Scraping SEC EDGAR filings using their submission API, with BeautifulSoup HTML parsing  
+REST API integration with FRED to pull multiple macro time series  
+Derived-metric construction  
+Loading and managing structured data in BigQuery  
+Cross-correlation / lag analysis  
+Out-of-sample validation  
+Phase-based/segmented analysis  
+Distinguishing correlation from mechanism  
+Correctly refusing to let a strong finding be applied by analogy where the underlying mechanism differs  
+Converting a statistical relationship into a specific, timed operational recommendation  
 
 ## Tech Showcase
 
@@ -193,4 +203,47 @@ for phase_name, phase_df in df.groupby("phase"):
                     corr = valid[target].corr(valid["shifted"])
                     phase_results.append({"indicator": indicator, "target": target, "lag": lag, "corr": round(corr, 3), "n": len(valid)})
     print(pd.DataFrame(phase_results).sort_values("corr", key=abs, ascending=False).head(10))
+```
+
+### CTEs
+
+```BigQuery
+WITH umcsent AS (
+  SELECT 
+    reportDate,
+    value
+  FROM `autonation_analysis.fred_consumer_health`
+  WHERE series_id = "UMCSENT"
+),
+unrate AS (
+  SELECT 
+    reportDate,
+    value
+  FROM `autonation_analysis.fred_consumer_health`
+  WHERE series_id = "UNRATE"
+),
+.....
+SELECT 
+  u.reportDate,
+  u.value AS consumer_sentiment,
+  r.value AS unemployment_rate,
+  d.value AS real_disposable_income,
+  p.value AS personal_saving_rate,
+  c1.value AS cpi_new_vehicles,
+  c2.value AS cpi_used_vehicles,
+  t.value AS total_industry_sales
+FROM umcsent u 
+  LEFT JOIN unrate r
+    ON u.reportDate = r.reportDate
+  LEFT JOIN dspic96 d
+    ON u.reportDate = d.reportDate
+  LEFT JOIN psavert p
+    ON u.reportDate = p.reportDate
+  LEFT JOIN CUSR0000SETA01 c1
+    ON c1.reportDate = p.reportDate
+  LEFT JOIN CUSR0000SETA02 c2
+    ON c2.reportDate = p.reportDate
+  LEFT JOIN TOTALSA t
+    ON t.reportDate = p.reportDate
+ORDER BY u.reportDate;
 ```
