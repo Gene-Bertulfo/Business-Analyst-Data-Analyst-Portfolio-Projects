@@ -9,6 +9,5 @@
 
 3. [AutoNation Demand Analysis: Macro Indicators, Supply Constraints, and Inventory Strategy (2019–2025)](./autonation-demand-analysis/README.md)  
    AutoNation Demand Analysis evaluates 2019–2025 SEC EDGAR and FRED API data to show that consumer sentiment and  
-   unemployment offer no reliable leading warning for vehicle demand outside the pandemic shock, whereas  
-   new-vehicle inventory days-supply serves as a viable, actionable signal for anticipating sales shifts and  
-   steering inventory strategy.  
+   unemployment offer no reliable leading warning for vehicle demand outside the pandemic shock, whereas new-vehicle  
+   inventory days-supply serves as a viable, actionable signal for anticipating sales shifts and steering inventory strategy.  
