@@ -3,7 +3,7 @@
 ## Goal
 AutoNation (AN) is used as a bellwether for consumer durables spending. This analysis tests whether macroeconomic and inventory indicators can predict shifts in AN's new-vehicle and used-vehicle unit sales and, where a real relationship exists, translates it into an operational recommendation.
 
-## Description & Details
+## Details
 
 ### Data Sources
 
@@ -33,11 +33,36 @@ All data covers 2019–2025. Quarterly AN unit sales were derived directly from 
 AN's own units held up better than the industry average during this window, suggesting the used-vehicle pivot helped offset the new-vehicle shortage better than competitors managed.  
 Separately, unemployment fell to historic lows during this same window while sentiment kept declining, a divergence attributable to inflation eroding confidence even as the labor market stayed strong.
 
-## Results
+**2022–2023: Normalization.** Sentiment recovers off its floor; new-vehicle days-supply and CPI both ease; new-unit sales climb back from 2023-Q2 onward; used-vehicle CPI cools from its peak as rental-fleet resales and eased chip supply relieve the used market.
+
+**2024–2025: A different kind of softening.** Sentiment declines again from 2024-Q2, but this time unemployment is also drifting upward, rather than staying strong as it did in 2021–2022. This is the first time since the pandemic shock that these two indicators have moved together. New-vehicle days-supply also rises again (to ~75–80 days by 2024-Q3), but the mechanism looks different from 2021–2022: inventory building up against softening demand, rather than scarcity.
+
+### What Was Tested and Did Not Hold Up
+The original thesis was that consumer-health indicators (sentiment, unemployment, income, savings rate) would show a multi-quarter leading relationship to AN's units sold, giving AN advance warning of demand shifts.  
+Full-period correlation (2019–2025) appeared to support this: unemployment and savings rate showed their strongest relationship to used-unit sales at a 4-quarter lag (r ≈ 0.69 and 0.67, respectively).  
+This result did not survive testing. Re-running the same calculation on 2022–2025 only (excluding the pandemic period) collapsed both relationships to weak, contemporaneous correlations (r ≈ -0.51 at lag 0, weakening, not strengthening, with lag). The original 4-quarter-lag finding was very likely a pandemic-specific artifact: the 2020–2021 stimulus-driven savings spike happened to precede the 2021–2022 used-vehicle surge by about a year, which produced a correlation that does not represent a repeatable pattern.  
+**Conclusion:** consumer sentiment and unemployment do not provide a reliable multi-quarter early warning for AN's demand shifts outside of the 2020–2021 anomaly. This is a real finding, not a null result, it rules out an entire class of forecasting approach for this business.
+
+### What Held Up: The Supply-Side Signal
+The same out-of-sample test (2022–2025 only) was applied to the inventory-based relationships, since AN's own days-supply data is something the company measures and controls directly:
+- new_days_supply → used_units: remained strongly negative (r = -0.738 at lag 0, -0.687 at lag 1), the new-to-used substitution mechanism holds outside the pandemic window, not just during the chip shortage.
+- new_days_supply → new_units: positive and strengthening with lag (r = 0.508 at lag 0 → 0.611 at lag 1 → 0.663 at lag 2), a genuine ~1–2 quarter leading relationship. The likely mechanism: rising new-vehicle inventory triggers discounting/promotional response, which lifts new-unit sales 1–2 quarters later.
+
+**Limitations on this finding:** the sample size is small (14–18 quarterly observations for these lags), so treat the exact correlation magnitudes as directional rather than precise. There is also a plausible alternative explanation that cannot be ruled out with correlation alone: days-supply is partly calculated from recent sales volume (inventory ÷ sales rate), so a temporarily weak sales quarter can mechanically inflate days-supply, and a subsequent reversion to normal sales could produce the same lagged pattern without any real discounting behavior occurring. This is flagged as an open limitation, not resolved by the current dataset.
+
+## Results / Recommendation
+Consumer sentiment and unemployment should not be used as AN's primary early-warning system for demand shifts, the data does not support a reliable lead time from these indicators outside of the unique 2020–2021 stimulus period.  
+
+Instead, new-vehicle inventory days-supply is a more defensible, real-time signal AN already has direct visibility into and control over. The data supports two specific, actionable relationships:
+- **When new-vehicle days-supply rises** (inventory building up faster than it's selling), expect and prepare for a lift in new-vehicle unit sales roughly 1–2 quarters out, this is the window to plan discounting/promotional pushes to clear that inventory, since the data shows this pattern already happens (likely via dealer-initiated discounting), rather than waiting reactively.
+- **When new-vehicle days-supply falls** (inventory tightening), expect increased used-vehicle demand in that same quarter, AN should proactively shift inventory allocation, marketing spend, and F&I focus toward used vehicles at that point, rather than treating the demand shift as a surprise after it's already happened.  
+
+One important qualifier baked into the recommendation: **don't apply this automatically to the current 2024–2025 environment.** Days-supply is rising right now too, but for a different reason than 2021–2022, back then it was scarcity (chip shortage) forcing the shift to used; right now it looks more like inventory piling up because demand is genuinely softening (consumer sentiment declining while unemployment gradually climbs, a combination not seen since the pandemic). The trigger metric is the same, but the recommended response isn't automatically "lean into used" this time, that call should be re-evaluated against whether this is a supply story or a demand story, since the data suggests it's likely the latter now.
 
 ## Tech Stack
+Python, BigQuery, Power BI
 
 ## Skills Demonstrated
 
-## In-depth tech details of the project
+## Tech Showcase
 
