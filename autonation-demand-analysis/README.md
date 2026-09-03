@@ -31,9 +31,11 @@ All data covers 2019-2025. Quarterly AN unit sales were derived directly from Q1
 - AN's own new-vehicle days-supply fell to roughly 10–15 days, a direct measurement of inventory scarcity.
   ![Days Supply](./screenshots/DaysSupply.png)
 - New-vehicle CPI rose while new units fell (the signature of a supply-constrained price spike); used-vehicle CPI rose and used units rose simultaneously (the signature of a demand-pull surge as displaced new-car buyers competed for used inventory).
+  ![New vehicle vs Used vehicle](./screenshots/newvsused.png)
 
 AN's own units held up better than the industry average during this window, suggesting the used-vehicle pivot helped offset the new-vehicle shortage better than competitors managed.  
-Separately, unemployment fell to historic lows during this same window while sentiment kept declining, a divergence attributable to inflation eroding confidence even as the labor market stayed strong.
+Separately, unemployment fell to historic lows during this same window while sentiment kept declining, a divergence attributable to inflation eroding confidence even as the labor market stayed strong.   
+![sentiment unemployment](./screenshots/sentiment-unemployment.png)
 
 **2022-2023: Normalization.** Sentiment recovers off its floor; new-vehicle days-supply and CPI both ease; new-unit sales climb back from 2023-Q2 onward; used-vehicle CPI cools from its peak as rental-fleet resales and eased chip supply relieve the used market.
 
