@@ -66,3 +66,89 @@ Python, BigQuery, Power BI
 
 ## Tech Showcase
 
+### Pull the full filing list (10-Q and 10-K)
+
+```python
+def get_filings(CIK_PADDED, HEADERS):
+  url = f"https://data.sec.gov/submissions/CIK{CIK_PADDED}.json"
+  data = requests.get(url, headers=HEADERS).json()
+  recent = data["filings"]["recent"]
+  df = pd.DataFrame({
+      "form": recent["form"],
+      "accessionNumber": recent["accessionNumber"],
+      "filingDate": recent["filingDate"],
+      "reportDate": recent["reportDate"],
+      "primaryDocument": recent["primaryDocument"]
+  })
+  return df[df["form"].isin(["10-Q", "10-K"])].reset_index(drop=True)
+
+filings = get_filings(CIK_PADDED, HEADERS)
+filings = filings[filings["reportDate"] >= "2019-01-01"]   # the project window
+print(len(filings), "filings found")
+filings.head()
+```
+
+### Parse "Retail vehicle unit sales" out of each filing
+
+```python
+def extract_units(url, headers):
+    r = requests.get(url, headers=headers)
+    soup = BeautifulSoup(r.text, "html.parser")
+    new_units, used_units = None, None
+    for table in soup.find_all("table"):
+        in_section = False
+        for row in table.find_all("tr"):
+            cells = [c.get_text(strip=True) for c in row.find_all(["td", "th"])]
+            label = " ".join(cells).strip().lower()
+
+            if "retail vehicle unit sales" in label:
+                in_section = True
+                continue
+```
+
+### Forward to BigQuery
+
+```python
+table_id = f"{PROJECT_ID}.{DATASET_ID}.units_sold_raw"
+job = client.load_table_from_dataframe(
+    units_df, table_id,
+    job_config=bigquery.LoadJobConfig(write_disposition="WRITE_TRUNCATE")
+)
+job.result()
+print("Loaded", job.output_rows, "rows to", table_id)
+```
+
+### Extract Data from FRED with API Key
+
+```python
+def get_fred_series(series_id, api_key):
+    url = "https://api.stlouisfed.org/fred/series/observations"
+    params = {
+        "series_id": series_id,
+        "api_key": api_key,
+        "file_type": "json",
+        "frequency": "q",
+        "aggregation_method": "avg",
+        "observation_start": "2019-01-01",
+    }
+    r = requests.get(url, params=params)
+    r.raise_for_status()
+    data = r.json()["observations"]
+    df = pd.DataFrame(data)[["date", "value"]]
+    df["value"] = pd.to_numeric(df["value"], errors="coerce")
+    return df
+
+fred_frames = []
+for series_id, label in SERIES.items():
+    df = get_fred_series(series_id, FRED_API_KEY)
+    df["series"] = label
+    df["series_id"] = series_id
+    fred_frames.append(df)
+
+fred_df = pd.concat(fred_frames, ignore_index=True)
+fred_df.rename(columns={"date": "reportDate"}, inplace=True)
+fred_df["reportDate"] = pd.to_datetime(fred_df["reportDate"]).dt.date
+
+fred_df
+```
+
