@@ -3,7 +3,7 @@
 ## Goal
 AutoNation (AN) is used as a bellwether for consumer durables spending. This analysis tests whether macroeconomic and inventory indicators can predict shifts in AN's new-vehicle and used-vehicle unit sales and, where a real relationship exists, translates it into an operational recommendation.
 
-## Description
+## Description & Details
 
 ### Data Sources
 
@@ -21,6 +21,8 @@ AutoNation (AN) is used as a bellwether for consumer durables spending. This ana
 
 All data covers 2019–2025. Quarterly AN unit sales were derived directly from Q1–Q3 10-Q disclosures; Q4 figures were derived as (annual 10-K total − sum of Q1–Q3).
 
+### Timeline of Findings
+
 
 ## Results
 
@@ -28,5 +30,5 @@ All data covers 2019–2025. Quarterly AN unit sales were derived directly from 
 
 ## Skills Demonstrated
 
-## In-depth details of the project
+## In-depth tech details of the project
 
