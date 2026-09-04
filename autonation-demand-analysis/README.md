@@ -19,7 +19,7 @@ AutoNation (AN) is used as a bellwether for consumer durables spending. This ana
 | CPI: used vehicles (CUSR0000SETA02) | FRED | Quarterly (avg) |
 | Total industry vehicle sales, SAAR (TOTALSA) | FRED | Quarterly (avg) |
 
-All data covers 2019-2025. Quarterly AN unit sales were derived directly from Q1–Q3 10-Q disclosures; Q4 figures were derived as (annual 10-K total − sum of Q1-Q3).
+All data covers 2019-2025. Quarterly AN unit sales were derived directly from Q1-Q3 10-Q disclosures; Q4 figures were derived as (annual 10-K total − sum of Q1-Q3).
 
 ### Timeline of Findings
 
@@ -28,7 +28,7 @@ All data covers 2019-2025. Quarterly AN unit sales were derived directly from Q1
 **2021-2022: Supply-constrained substitution.** This period initially looked like a sentiment-driven shift toward used vehicles (sentiment was falling; used units were rising). Three independent pieces of evidence instead point to a supply-side explanation:  
 - Total industry sales (not just AN) dropped sharply, an industry-wide event consistent with the chip shortage, not a demand-side story specific to AN's customers.   
   ![Total Industry Sales](./screenshots/Units-Sold-Total-Industry-Sales.png)
-- AN's own new-vehicle days-supply fell to roughly 10–15 days, a direct measurement of inventory scarcity.
+- AN's own new-vehicle days-supply fell to roughly 10-15 days, a direct measurement of inventory scarcity.
   ![Days Supply](./screenshots/DaysSupply.png)
 - New-vehicle CPI rose while new units fell (the signature of a supply-constrained price spike); used-vehicle CPI rose and used units rose simultaneously (the signature of a demand-pull surge as displaced new-car buyers competed for used inventory).
   ![New vehicle vs Used vehicle](./screenshots/newvsused.png)
