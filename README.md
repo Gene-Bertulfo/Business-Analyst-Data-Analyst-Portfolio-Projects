@@ -1,5 +1,5 @@
 # Business/Data Analyst Portfolio
-A collection of projects built to solve real operational problems, panning lead management automation, call center performance reporting, and macroeconomic demand analysis. Each project includes a technical showcase build, not just the final output.
+A collection of my personal projects built to solve real operational problems, panning lead management automation, call center performance reporting, and macroeconomic demand analysis. Each project includes a technical showcase build, not just the final output.
 
 ## Projects
 1. [Solving Duplicate Lead Calls: A Ground-Up Lead Management System](./lead-management-system/README.md)  
