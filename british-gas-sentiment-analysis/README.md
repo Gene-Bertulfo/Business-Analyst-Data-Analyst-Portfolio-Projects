@@ -11,9 +11,15 @@ announcements and how that reflected on the company, supported by written insigh
 
 ## Details
 _This a sentiment/content analysis. Do not expect heavy tech stack in this case study._  
+
 - Started from a Raw Data set of articles, then used Power Query to build an "Articles" table, removing 2 duplicate-link articles from the original dataset.
-- Selected a sample of 20 articles (out of 41 on-topic articles in the full dataset) for close reading, logged in "Articles Read" with Publication, Date,
-  Author, Headline, Type, Reach, Article_ID, and per-article scoring on 5 key messages plus overall Sentiment.
+- Built the 20-article sample from the 41 on-topic articles using a proportional allocation method, 3 single-article dates were set aside first, and
+  the remaining 20 articles were distributed across the other dates at a ratio of 0.4146 applied to each date's article count.
+- Made two adjustments to this baseline allocation, excluded the Nov 25 weekend round-up, as it largely restated coverage already captured earlier
+  in the week and added no new sentiment or messaging signal; and substituted in an additional Nov 20 article in place of one of the Nov 24 picks,
+  since the Nov 24 date's initial sentiment readings looked repetitive across the drafted selections and the substitution preserved tonal variety
+  in the sample. This brought the SVT Announcement date total to 12.
+- Logged the final 20-article sample in "Articles Read" with Publication, Date, Author, Headline, Type, Reach, Article_ID, and per-article scoring on 5 key messages plus overall Sentiment.
 - Isolated 5 Primary Source Key Messages (M1-M5) from the original announcement statements/quotes, drawn chiefly from articles A2, A5, A9, and A11
   (Iain Conn's own bylined piece), each paired with a representative quote/source:
   - M1: Scrapping SVTs is more effective than a government price cap
@@ -43,5 +49,7 @@ Data cleaning and deduplication via Power Query
 Dashboard/summary reporting  
 Written insight synthesis from primary-source quotes  
 
-## Dashboard
+### Dashboard
 ![British Gas Centrica](./screenshots/BritishGasDashboard.png)
+
+### 20 Sample Articles
