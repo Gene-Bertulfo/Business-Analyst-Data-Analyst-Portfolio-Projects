@@ -28,3 +28,4 @@ _This a sentiment/content analysis. Do not expect heavy tech stack in this case 
 
 ## Results
 - Across the 20-article sample, sentiment split 9 Neutral, 7 Negative, 4 Positive, with nearly all negative coverage falling on or after the Nov 23 profit warning; the Nov 20 announcement itself drew a mixed reception, including favorable wire coverage and Centrica's own bylined op-ed alongside early skepticism from The Independent and Reuters.
+- Of the five key messages tested across all 20 articles (100 message-checks total), only 24% achieved Full pull-through, 15% Partial, and 61% were dropped or actively reframed. M3 ("ending SVTs helps customers shop around") landed best; M5 ("voluntary leadership, not forced") fared worst, with journalists more inclined to frame the move as defensive than as leadership regardless of how Centrica presented it.
