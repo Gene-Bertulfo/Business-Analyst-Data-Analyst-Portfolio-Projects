@@ -53,3 +53,4 @@ Written insight synthesis from primary-source quotes
 ![British Gas Centrica](./screenshots/BritishGasDashboard.png)
 
 ### 20 Sample Articles
+![20 Sample Articles](./screenshots/20samplearticles.png)
