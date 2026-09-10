@@ -8,3 +8,8 @@ for new customers by March 31 of the following year, and the Nov 23, 2017 tradin
 warning that earnings would fall below forecasts.  
 The task also called for highlighting the messaging/key points of conversation during both 
 announcements and how that reflected on the company, supported by written insights along with visual and qualitative elements.
+
+## Details
+- Started from a Raw Data set of articles, then used Power Query to build an "Articles" table, removing 2 duplicate-link articles from the original dataset.
+- Selected a sample of 20 articles (out of 41 on-topic articles in the full dataset) for close reading, logged in "Articles Read" with Publication, Date,
+  Author, Headline, Type, Reach, Article_ID, and per-article scoring on 5 key messages plus overall Sentiment.
