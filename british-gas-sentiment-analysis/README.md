@@ -10,6 +10,7 @@ The task also called for highlighting the messaging/key points of conversation d
 announcements and how that reflected on the company, supported by written insights along with visual and qualitative elements.
 
 ## Details
+_This a sentiment/content analysis. Do not expect heavy tech stack in this case study._  
 - Started from a Raw Data set of articles, then used Power Query to build an "Articles" table, removing 2 duplicate-link articles from the original dataset.
 - Selected a sample of 20 articles (out of 41 on-topic articles in the full dataset) for close reading, logged in "Articles Read" with Publication, Date,
   Author, Headline, Type, Reach, Article_ID, and per-article scoring on 5 key messages plus overall Sentiment.
