@@ -11,5 +11,5 @@ A collection of my personal projects built to solve real operational problems, p
 3. [AutoNation Demand Analysis: Macro Indicators, Supply Constraints, and Inventory Strategy (2019–2025)](./autonation-demand-analysis/README.md)  
    Tested whether macro indicators predict AutoNation's vehicle demand, and found a more reliable signal in the company's own inventory data.
 
-4. [British Gas Media Sentiment Analysis: SVT Announcement & Profit Warning Coverage (Nov 2017)](./british-gas-centrica/README.md)
+4. [British Gas Media Sentiment Analysis: SVT Announcement & Profit Warning Coverage (Nov 2017)](./british-gas-centrica/README.md)  
    Analyzed 41 news articles to track how media sentiment and key messaging shifted across one turbulent week for British Gas.
