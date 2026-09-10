@@ -44,4 +44,4 @@ Dashboard/summary reporting
 Written insight synthesis from primary-source quotes  
 
 ## Dashboard
-
+![British Gas Centrica](./screenshots/BritishGasDashboard.png)
