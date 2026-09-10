@@ -1,4 +1,4 @@
-# British Gas / Centrica Media Sentiment Analysis: SVT Announcement & Profit Warning (Nov 2017)
+# British Gas Media Sentiment Analysis: SVT Announcement & Profit Warning Coverage (Nov 2017)
 
 ## Goal / Task
 Analyze a sample subset of 15-20 articles from a dataset of media coverage to determine how
