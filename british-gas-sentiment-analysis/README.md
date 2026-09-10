@@ -31,3 +31,17 @@ _This a sentiment/content analysis. Do not expect heavy tech stack in this case 
 - Of the five key messages tested across all 20 articles (100 message-checks total), only 24% achieved Full pull-through, 15% Partial, and 61% were dropped or actively reframed. M3 ("ending SVTs helps customers shop around") landed best; M5 ("voluntary leadership, not forced") fared worst, with journalists more inclined to frame the move as defensive than as leadership regardless of how Centrica presented it.
 - Skepticism toward Centrica's motives predates the profit warning: Reuters' own Nov 20 headline framed the SVT move as an act "to fend off" the government price cap, directly inverting Centrica's claim, and The Independent's Felicity Hannah (Nov 22) dismissed the pledge as "no silver bullet" before the profit warning had even happened, meaning the profit warning confirmed a reading several outlets had already reached rather than creating it.
 - Overall: Centrica did not control the narrative around its own announcement. Its core claim of acting voluntarily, ahead of and independent from government pressure, was the least-believed part of its message, while the more modest, factual claim (that scrapping SVTs could help customers shop around) was the one that actually got repeated. By the time the Nov 23 profit warning landed, media commentary (The Independent's James Moore and a later Utility Week retrospective) was already prepared to read the SVT pledge as a PR move rather than genuine reform, the bad financial numbers made that reading unavoidable rather than introducing it.
+
+## Tech Stack
+Excel (Power Query for data loading/deduplication; formula-driven Executive Summary dashboard)
+
+## Skills Demonstrated
+Media/sentiment analysis  
+Message pull-through scoring against a defined rubric  
+Qualitative source coding (per-article notes on tone/sentiment)  
+Data cleaning and deduplication via Power Query  
+Dashboard/summary reporting  
+Written insight synthesis from primary-source quotes  
+
+## Dashboard
+
